@@ -294,9 +294,11 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
    
 5.1. **TH Đã Đăng Nhập**
 
-  <img src="Office/f11.jpg" alt="Phim sắp chiếu" width="200"/>
-  <img src="Office/f13.jpg" alt="Phim sắp chiếu" width="200"/>
-
+<p float="left">
+  <img src="Office/f11.jpg" alt="Phim sắp chiếu" width="150"/>
+  <img src="Office/f13.jpg" alt="Phim sắp chiếu" width="150"/>
+  <img src="Office/f14.jpg" alt="Phim sắp chiếu" width="150"/>
+</p>
 6.  **Thanh Toán**
 
    <img src="Office/f12.jpg" alt="Phim sắp chiếu" width="200"/>
