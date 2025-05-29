@@ -271,38 +271,40 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 
 1. **Giao Diện Trang chủ khi chưa đăng nhập**
 
-   <img src="Office/f.jpg" alt="Trang chủ" width="300"/>
+   <img src="Office/f.jpg" alt="Trang chủ" width="150"/>
 
 2. **Giao diện Phim Sắp Chiếu, Phim Đang Chiếu**
 
-   <img src="Office/f.jpg" alt="Phim sắp chiếu" width="300"/>
-   <img src="Office/f2.jpg" alt="Phim đang chiếu" width="300"/>
+   <img src="Office/f.jpg" alt="Phim sắp chiếu" width="150"/>
+   <img src="Office/f2.jpg" alt="Phim đang chiếu" width="150"/>
 
 3. **Giao diện Chi Tiết Phim Sắp Chiếu, Phim Đang Chiếu**
 
-   <img src="Office/f3.jpg" alt="Phim sắp chiếu" width="300"/>
-   <img src="Office/f4.jpg" alt="Phim đang chiếu" width="300"/>
+   <img src="Office/f3.jpg" alt="Phim sắp chiếu" width="150"/>
+   <img src="Office/f4.jpg" alt="Phim đang chiếu" width="150"/>
 
 4. **Giao Diện Lịch Chiếu , Suất Chiếu**
 
-   <img src="Office/f5.jpg" alt="Phim đang chiếu" width="300"/>
+   <img src="Office/f5.jpg" alt="Phim đang chiếu" width="150"/>
 
 5. **Trường hợp chưa đăng nhập**
 
-   <img src="Office/f6.jpg" alt="Phim sắp chiếu" width="300"/>
+   <img src="Office/f6.jpg" alt="Phim sắp chiếu" width="150"/>
 5.1. **TH Đã Đăng Nhập**
 
-<img src="Office/f11.jpg" alt="Phim sắp chiếu" width="300"/>
-<img src="Office/f13.jpg" alt="Phim sắp chiếu" width="300"/>
-<img src="Office/f14.jpg" alt="Phim sắp chiếu" width="300"/>
+  <img src="Office/f11.jpg" alt="Phim sắp chiếu" width="150"/>
+  <img src="Office/f13.jpg" alt="Phim sắp chiếu" width="150"/>
+  <img src="Office/f14.jpg" alt="Phim sắp chiếu" width="150"/>
 
 6.  **Thanh Toán**
-    <img src="Office/f12.jpg" alt="Phim sắp chiếu" width="300"/>
+
+  <img src="Office/f12.jpg" alt="Phim sắp chiếu" width="150"/>
+
 7.  **Thông Tin Vé**
 
-<img src="Office/f20.jpg" alt="Phim sắp chiếu" width="300"/>
-<img src="Office/f15.jpg" alt="Phim sắp chiếu" width="300"/>
-<img src="Office/f16.jpg" alt="Phim sắp chiếu" width="300"/>
+  <img src="Office/f20.jpg" alt="Phim sắp chiếu" width="150"/>
+  <img src="Office/f15.jpg" alt="Phim sắp chiếu" width="150"/>
+  <img src="Office/f16.jpg" alt="Phim sắp chiếu" width="150"/>
 
 ## V. 🚀 Test Case
 
