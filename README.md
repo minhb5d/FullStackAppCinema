@@ -47,7 +47,7 @@ Một **ứng dụng bán vé xem phim trực tuyến** sẽ giúp người dùn
 
 ### 2. Biểu đồ phân rã chức năng
 
-![Biểu đồ phân rã chức năng](Office/image.png)
+![Biểu đồ phân rã chức năng](Office/Phanda.png)
 
 ---
 
