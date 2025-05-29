@@ -296,7 +296,6 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 
   <img src="Office/f11.jpg" alt="Phim sắp chiếu" width="200"/>
   <img src="Office/f13.jpg" alt="Phim sắp chiếu" width="200"/>
-  <img src="Office/f14.jpg" alt="Phim sắp chiếu" width="200"/>
 
 6.  **Thanh Toán**
 
