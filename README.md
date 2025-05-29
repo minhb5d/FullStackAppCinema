@@ -1,4 +1,4 @@
-# 🎬 Ứng Dụng Bán Vé Xem Phim Trực Tuyến
+#  Ứng Dụng Bán Vé Xem Phim Trực Tuyến
 
 ## I. Khảo Sát Nghiệp Vụ Hệ Thống
 
@@ -102,25 +102,25 @@ React Native là một framework phát triển ứng dụng di động đa nền
 
 | Công Cụ               | Mục Đích Sử Dụng                                                    |
 | --------------------- | ------------------------------------------------------------------- |
-| 💻 Visual Studio Code | IDE phát triển frontend và backend                                  |
-| 📦 Expo               | Build/test ứng dụng React Native dễ dàng trên thiết bị thực         |
-| ☁️ Render             | Triển khai backend và PostgreSQL lên môi trường cloud, hỗ trợ CI/CD |
-| 🔄 Redis              | Cache dữ liệu và tăng tốc độ truy vấn hệ thống                      |
-| 🖼️ Cloudinary         | Lưu trữ, tối ưu và quản lý ảnh (poster phim, ảnh ghế, ...)          |
-| 🗂️ GitHub             | Quản lý mã nguồn, teamwork, version control                         |
+|  Visual Studio Code | IDE phát triển frontend và backend                                  |
+|  Expo               | Build/test ứng dụng React Native dễ dàng trên thiết bị thực         |
+|  Render             | Triển khai backend và PostgreSQL lên môi trường cloud, hỗ trợ CI/CD |
+|  Redis              | Cache dữ liệu và tăng tốc độ truy vấn hệ thống                      |
+|  Cloudinary         | Lưu trữ, tối ưu và quản lý ảnh (poster phim, ảnh ghế, ...)          |
+|  GitHub             | Quản lý mã nguồn, teamwork, version control                         |
 
 ---
 
-## IV. 🚀 Triển Khai
+## IV.  Triển Khai
 
-### 1. 🎨 Thiết Kế Giao Diện Người Dùng
+### 1.  Thiết Kế Giao Diện Người Dùng
 
 - Giao diện được thiết kế bằng [Figma](https://figma.com/) để đảm bảo trải nghiệm người dùng (UX/UI) xuyên suốt và đồng bộ.
 - Sơ đồ điều hướng và layout các màn hình được xác định rõ ràng trước khi phát triển.
 
 ---
 
-### 2. 🧩 Triển Khai Backend
+### 2.  Triển Khai Backend
 
 #### a. Cấu Trúc Cơ Sở Dữ Liệu
 
@@ -155,7 +155,7 @@ Sơ đồ tổng quan:
 
 ---
 
-### 3. 📁 Cấu Trúc Thư Mục Dự Án
+### 3.  Cấu Trúc Thư Mục Dự Án
 
 - **Cấu trúc projetc**  
   ![alt text](Office/Struct.png)
@@ -304,7 +304,7 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 <img src="Office/f15.jpg" alt="Phim sắp chiếu" width="300"/>
 <img src="Office/f16.jpg" alt="Phim sắp chiếu" width="300"/>
 
-## V. 🚀 Test Case
+## V.  Test Case
 
 ## Module Test Case Cho Account
 
@@ -336,14 +336,14 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 
 3. Test Case cho đặt ghế và xem lịch
 
-## 🎬 Module: Chọn phim
+##  Module: Chọn phim
 
 | STT | Mã Test Case | Mô Tả                              | Bước Thực Hiện                                                                                   | Dữ Liệu Đầu Vào  | Kết Quả Mong Đợi                       | Kết Quả Thực Tế                        | Trạng Thái |
 | --- | ------------ | ---------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------- | -------------------------------------- | -------------------------------------- | ---------- |
 | 1   | TC_FILM_001  | Chọn phim muốn xem                 | 1. Nhấn vào mục "Phim đang chiếu"<br>2. Nhấn "Đặt vé"<br>3. Chọn lịch chiếu<br>4. Chọn giờ chiếu | Phim: Doraemon   | Hiển thị lịch chiếu và khung giờ chiếu | Hiển thị lịch chiếu và khung giờ chiếu | Pass       |
 | 2   | TC_FILM_002  | Chọn suất chiếu khi chưa đăng nhập | 1. Nhấn vào giờ chiếu của phim bất kỳ (khi chưa đăng nhập)                                       | Giờ chiếu bất kỳ | Yêu cầu đăng nhập                      | Yêu cầu đăng nhập                      | Pass       |
 
-## 🎟️ Module: Đặt ghế
+##  Module: Đặt ghế
 
 | STT | Mã Test Case | Mô Tả                          | Bước Thực Hiện                                              | Dữ Liệu Đầu Vào    | Kết Quả Mong Đợi                         | Kết Quả Thực Tế                          | Trạng Thái |
 | --- | ------------ | ------------------------------ | ----------------------------------------------------------- | ------------------ | ---------------------------------------- | ---------------------------------------- | ---------- |
@@ -352,7 +352,7 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 | 5   | TC_FILM_005  | Thanh toán                     | 1. Chọn ghế<br>2. Nhấn xác nhận<br>3. Nhấn thanh toán       | Ghế A1, A2         | Thanh toán thành công                    | Thanh toán thành công                    | Pass       |
 | 6   | TC_FILM_006  | Đặt ghế nhưng không thanh toán | 1. Chọn ghế<br>2. Nhấn xác nhận<br>3. Không nhấn thanh toán | Ghế bất kỳ         | Hủy giữ ghế sau một thời gian            | Hủy giữ ghế                              | Pass       |
 
-## 📜 Module: Lịch sử vé
+##  Module: Lịch sử vé
 
 | STT | Mã Test Case | Mô Tả                         | Bước Thực Hiện                                  | Dữ Liệu Đầu Vào  | Kết Quả Mong Đợi                         | Kết Quả Thực Tế                          | Trạng Thái |
 | --- | ------------ | ----------------------------- | ----------------------------------------------- | ---------------- | ---------------------------------------- | ---------------------------------------- | ---------- |
@@ -360,7 +360,7 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 | 8   | TC_User      | Lịch sử vé khi chưa đăng nhập | 1. Nhấn vào mục "Lịch sử vé" khi chưa đăng nhập | Không đăng nhập  | Yêu cầu đăng nhập                        | Yêu cầu đăng nhập                        | Pass       |
 | 9   | TC_FILM_008  | Chi tiết vé                   | 1. Nhấn vào vé đã mua trong danh sách lịch sử   | Vé đã mua        | Hiển thị thông tin vé chi tiết + mã vạch | Hiển thị thông tin vé chi tiết + mã vạch | Pass       |
 
-## 🚀 VI. Cách Chạy Dự Án
+##  VI. Cách Chạy Dự Án
 
 ### Bước 1: Clone Project từ GitHub
 
