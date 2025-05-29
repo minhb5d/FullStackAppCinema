@@ -51,8 +51,8 @@ const LoginForm = ({
                 </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity>
-                <Text onPress={() => navigation.navigate("ForgetPassword")} style={styles.forgotPass}>
+            <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}  >
+                <Text style={styles.forgotPass}>
                     Quên mật khẩu?
                 </Text>
             </TouchableOpacity>

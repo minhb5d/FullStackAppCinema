@@ -9,6 +9,7 @@ import { UserContext } from '../../context/UserContext';
 import Header from '../../components/Header';
 import { ru } from 'date-fns/locale';
 import COLORS from '../../assets/color';
+import { updateUserInfo } from '../../service/authService';
 
 const AccountInfoScreen = ({ route, navigation }) => {
     const { user } = route.params;
@@ -68,16 +69,7 @@ const AccountInfoScreen = ({ route, navigation }) => {
                 dia_chi: address
             };
 
-            console.log("Sending updatedUser:", updatedUser);
-
-            const response = await axios.put(
-                `http://192.168.164.5:8000/account/users/${user.id}`,
-                updatedUser
-            );
-
-            const userNew = response.data;
-            console.log("Received updated user:", userNew);
-
+            const userNew = await updateUserInfo(user.id, updatedUser);
             await AsyncStorage.setItem("user", JSON.stringify(userNew));
             Alert.alert("Thành công", "Thông tin đã được cập nhật!");
             navigation.navigate("Home");

@@ -5,7 +5,7 @@ from sqlalchemy.future import select
 from fastapi import HTTPException
 from datetime import datetime
 from app.models.models import SuatChieu, LichChieu, PhongChieu
-from app.schemas.SchemaShowTime import SuatChieuResponse, CreateSuatChieu
+from app.schemas.SchemaShowTime import SuatChieuResponse, CreateSuatChieu ,UpdateSuatChieu
 async def lay_suat_chieu_theo_lich_chieu(lich_chieu_id: int, db: AsyncSession):
     check = await db.execute(select(SuatChieu).where(SuatChieu.lich_chieu_id==lich_chieu_id).order_by(SuatChieu.gio_bat_dau)) 
     show = check.scalars().all() 
@@ -24,33 +24,33 @@ async def create_suat_chieu(db: AsyncSession, suat_chieu_data: CreateSuatChieu):
     await db.commit()
     await db.refresh(new_suat_chieu)
     return new_suat_chieu
-#  Xóa suất chiếu
-# async def xoa_suat_chieu(suat_chieu_id: int, db: AsyncSession):
-#     query = await db.execute(select(SuatChieu).where(SuatChieu.id == suat_chieu_id))
-#     suat_chieu = query.scalar_one_or_none()
-#     if suat_chieu is None:
-#         raise HTTPException(status_code=404, detail="Suất chiếu không tồn tại")
+# Cập nhật suất chiếu
+async def update_suat_chieu(suat_chieu_id: int, suat_chieu_data: UpdateSuatChieu, db: AsyncSession):
+    query = await db.execute(select(SuatChieu).where(SuatChieu.id == suat_chieu_id))
+    suat_chieu = query.scalar_one_or_none()
 
-#     await db.delete(suat_chieu)
-#     await db.commit()
-#     return SuatChieuResponse(message="Xóa suất chiếu thành công", data=None)
+    if not suat_chieu:
+        raise HTTPException(status_code=404, detail="Không tìm thấy suất chiếu")
 
-# #  Cap nhật suất chiếu
-# async def cap_nhat_suat_chieu(suat_chieu_id: int, updateshow: UpdateSuatChieu, db: AsyncSession):
-#     query = await db.execute(select(SuatChieu).where(SuatChieu.id == suat_chieu_id))
-#     suat_chieu = query.scalar_one_or_none()
-#     if suat_chieu is None:
-#         raise HTTPException(status_code=404, detail="Suất chiếu không tồn tại")
+    for key, value in suat_chieu_data.dict().items():
+        setattr(suat_chieu, key, value)
 
-#     # Cập nhật thông tin 
-#     suat_chieu.phong_id = updateshow.phong_id
-#     suat_chieu.gio_bat_dau = updateshow.gio_bat_dau
-#     suat_chieu.gio_ket_thuc = updateshow.gio_ket_thuc
+    await db.commit()
+    await db.refresh(suat_chieu)
+    return suat_chieu
 
-#     await db.commit()
-#     await db.refresh(suat_chieu)
-    
-#     return SuatChieuResponse(message="Cập nhật suất chiếu thành công", data=SuatChieuData.from_orm(suat_chieu))
+# Xóa suất chiếu
+async def delete_suat_chieu(suat_chieu_id: int, db: AsyncSession):
+    query = await db.execute(select(SuatChieu).where(SuatChieu.id == suat_chieu_id))
+    suat_chieu = query.scalar_one_or_none()
+
+    if not suat_chieu:
+        raise HTTPException(status_code=404, detail="Không tìm thấy suất chiếu")
+
+    await db.delete(suat_chieu)
+    await db.commit()
+    return {"message": "Xóa suất chiếu thành công"}
+
 
 
 

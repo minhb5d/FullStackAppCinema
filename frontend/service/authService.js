@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_BASE_URL } from './APIpath';
 
-const API_URL = "http://192.168.164.5:8000/account";
+const API_URL = `${API_BASE_URL}/account`;
 
 export const changePassword = async (userId, formData) => {
     try {
@@ -12,12 +13,13 @@ export const changePassword = async (userId, formData) => {
             }
         });
 
-        return response.data; // Trả về dữ liệu từ server
+        return response.data;
     } catch (error) {
         console.log("Lỗi khi đổi mật khẩu:", error.response?.data || error.message);
-        throw error; // Ném lỗi để xử lý ở component
+        throw error;
     }
 };
+
 export const login = async (email, password) => {
     try {
         const response = await axios.post(`${API_URL}/login`, {
@@ -25,30 +27,42 @@ export const login = async (email, password) => {
             mat_khau: password
         });
 
-        return response.data; // Trả về dữ liệu đăng nhập
+        return response.data;
     } catch (error) {
         console.log("Lỗi đăng nhập:", error.response?.data || error.message);
-        throw error; // Ném lỗi để xử lý ở component
+        throw error;
     }
 };
+
 export const signup = async (data) => {
     try {
-        const response = await axios.post(`${API_URL}/register`,
-            data
-        );
-
-        return response.data; // Trả về dữ liệu đăng nhập
+        const response = await axios.post(`${API_URL}/register`, data);
+        return response.data;
     } catch (error) {
         // console.error("Lỗi đăng nhập:", error.response?.data || error.message);
-        // throw error; // Ném lỗi để xử lý ở component
+        // throw error;
     }
 };
+
 export const forgotPassword = async (email) => {
     try {
         const response = await axios.post(`${API_URL}/forgotpassword`, { email });
         return response.data;
     } catch (error) {
         console.log("Lỗi quên mật khẩu:", error.response?.data || error.message);
+        throw error;
+    }
+};
+
+export const updateUserInfo = async (userId, userData) => {
+    try {
+        const response = await axios.put(
+            `${API_URL}/users/${userId}`,
+            userData
+        );
+        return response.data;
+    } catch (error) {
+        console.log("Lỗi cập nhật thông tin:", error.response?.data || error.message);
         throw error;
     }
 };

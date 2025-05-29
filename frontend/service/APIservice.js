@@ -1,11 +1,10 @@
 
 import axios from 'axios';
+import { API_BASE_URL } from './APIpath';
 
-// const API_BASE_URL = 'https://backend-dat-ve-online-1.onrender.com'; // Thay bằng IP máy backend nếu cần
-const API_BASE_URL = 'http://192.168.164.5:8000';
 const api = axios.create({
     baseURL: API_BASE_URL,
-    timeout: 5000, // Timeout nếu mất kết nối
+    timeout: 5000,
 });
 
 // Hàm chung để log lỗi chi tiết
@@ -16,7 +15,6 @@ const handleError = (message, error) => {
     }
 };
 
-// Lấy danh sách phim đang chiếu
 export const getMovies = async () => {
     try {
         const response = await api.get('/films/showing');
@@ -38,7 +36,6 @@ export const getMoviesUpcoming = async () => {
     }
 };
 
-// Lấy thông tin chi tiết phim
 export const getMovieDetails = async (movieId) => {
     try {
         const response = await api.get(`/phim/${movieId}`);
@@ -49,7 +46,6 @@ export const getMovieDetails = async (movieId) => {
     }
 };
 
-// Lấy thông tin ghế
 export const getSeat = async (showtimeId) => {
     try {
         const response = await api.get(`/listghe/ghe/${showtimeId}`);
@@ -60,7 +56,6 @@ export const getSeat = async (showtimeId) => {
     }
 };
 
-// Đặt ghế
 export const postSeat = async (data) => {
     try {
         const response = await api.post('/chon-ghe', data);
@@ -71,7 +66,6 @@ export const postSeat = async (data) => {
     }
 };
 
-// Thanh toán
 export const checkout = async (data) => {
     try {
         const response = await api.post('/Payment/confirm', data);
@@ -82,7 +76,6 @@ export const checkout = async (data) => {
     }
 };
 
-// Lấy lịch sử vé của người dùng
 export const ticket = async (userId) => {
     try {
         const response = await api.get(`/lich-su-phim/${userId}`);
@@ -93,7 +86,6 @@ export const ticket = async (userId) => {
     }
 };
 
-// Xoá ghế khi quay lại
 export const deleteSeat = async (data) => {
     try {
         const response = await api.delete('/xoa-ghe', { data });

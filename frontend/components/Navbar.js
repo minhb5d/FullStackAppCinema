@@ -1,21 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, FlatList, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
-
+import React, { useState, useRef, useEffect } from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Animated, Modal, Dimensions } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import COLORS from '../assets/color';
-import { ticket } from "../service/APIservice"; // 💡 nhớ import hàm ticket
+import { ticket } from "../service/APIservice";
 
-
+const MENU_WIDTH = 200;
 
 const NavBar = ({ user }) => {
     const [menuVisible, setMenuVisible] = useState(false);
-    const slideAnim = useState(new Animated.Value(-300))[0]; // Menu trượt từ phải vào
-    const [ticketCount, setTicketCount] = useState(0); // 🟡 thêm state
-
-
+    const [ticketCount, setTicketCount] = useState(0);
+    const slideAnim = useRef(new Animated.Value(MENU_WIDTH)).current; // Bắt đầu ngoài màn hình
     const navigation = useNavigation();
+
+    useEffect(() => {
+        if (menuVisible) {
+            Animated.timing(slideAnim, {
+                toValue: 0,
+                duration: 300,
+                useNativeDriver: false,
+            }).start();
+        } else {
+            Animated.timing(slideAnim, {
+                toValue: MENU_WIDTH,
+                duration: 300,
+                useNativeDriver: false,
+            }).start();
+        }
+    }, [menuVisible]);
+
+    useEffect(() => {
+        const fetchTickets = async () => {
+            if (user) {
+                const result = await ticket(user.id);
+                if (result && Array.isArray(result)) {
+                    setTicketCount(result.length);
+                }
+            }
+        };
+        fetchTickets();
+    }, [user]);
+
     const handleUserPress = () => {
         if (user) {
             navigation.navigate("Account", { user: user });
@@ -23,6 +49,7 @@ const NavBar = ({ user }) => {
             navigation.navigate("Login");
         }
     };
+
     const handleTicketPress = () => {
         if (user) {
             navigation.navigate("PurchasedTicket", { user: user });
@@ -30,47 +57,21 @@ const NavBar = ({ user }) => {
             navigation.navigate("Login");
         }
     };
+
     const toggleMenu = () => {
-        if (menuVisible) {
-            Animated.timing(slideAnim, {
-                toValue: -300, // Ẩn menu
-                duration: 300,
-                easing: Easing.linear,
-                useNativeDriver: false,
-            }).start(() => setMenuVisible(false));
-        } else {
-            setMenuVisible(true);
-            Animated.timing(slideAnim, {
-                toValue: 0, // Hiện menu
-                duration: 300,
-                easing: Easing.linear,
-                useNativeDriver: false,
-            }).start();
-        }
+        setMenuVisible(!menuVisible);
     };
+
     const closeMenuIfNeeded = () => {
-        if (menuVisible) {
-            toggleMenu(); // Đóng menu nếu đang mở
-        }
+        setMenuVisible(false);
     };
 
     const handleLogout = async () => {
-        await AsyncStorage.removeItem("user"); // Xoá thông tin tài khoản
-        navigation.replace("Home"); // Chuyển về màn hình đăng nhập
+        await AsyncStorage.removeItem("user");
+        navigation.replace("Home");
     };
-    useEffect(() => {
-        const fetchTickets = async () => {
-            if (user) {
-                const result = await ticket(user.id); // 🟢 gọi API lấy vé
-                if (result && Array.isArray(result)) {
-                    setTicketCount(result.length); // cập nhật số lượng
-                }
-            }
-        };
-        fetchTickets();
-    }, [user]);
-    return (
 
+    return (
         <>
             <View style={styles.navicon}>
                 <TouchableOpacity onPress={handleUserPress} style={styles.userContainer}>
@@ -90,45 +91,60 @@ const NavBar = ({ user }) => {
                             <Text style={styles.numberTicket}>{ticketCount}</Text>
                         )}
                     </TouchableOpacity>
-
                     <TouchableOpacity onPress={toggleMenu}>
                         <Icon name="bars" size={30} color={COLORS.primary} style={styles.icon} />
                     </TouchableOpacity>
                 </View>
             </View>
-            {menuVisible && (
+
+            <Modal
+                visible={menuVisible}
+                transparent
+                animationType="none"
+                onRequestClose={closeMenuIfNeeded}
+            >
                 <TouchableWithoutFeedback onPress={closeMenuIfNeeded}>
-
-
-                    <Animated.View style={[styles.menuContainer, { right: slideAnim }]}>
-                        <TouchableOpacity style={styles.menuItem}>
-                            <Icon name="bell" size={24} color="gray" />
-                            <Text style={styles.menuText}>Thông báo</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem} onPress={handleUserPress}>
-                            <Icon name="user" size={24} color="gray" />
-                            <Text style={styles.menuText}>Tài khoản</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem} onPress={handleTicketPress} >
-                            <Icon name="ticket-alt" size={24} color="gray" />
-                            <Text style={styles.menuText}>Vé</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}>
-                            <Icon name="cog" size={24} color="gray" />
-                            <Text style={styles.menuText}>Cài đặt</Text>
-                        </TouchableOpacity>
-                        {user && (
-                            <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
-                                <Icon name="sign-out-alt" size={24} color="red" />
-                                <Text style={[styles.menuText, { color: "red" }]}>Đăng xuất</Text>
+                    <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0)" }}>
+                        <Animated.View
+                            style={[
+                                styles.menuContainer,
+                                {
+                                    width: MENU_WIDTH,
+                                    position: "absolute",
+                                    top: 0,
+                                    bottom: 0,
+                                    right: 0,
+                                    transform: [{ translateX: slideAnim }]
+                                }
+                            ]}
+                        >
+                            <TouchableOpacity style={styles.menuItem}>
+                                <Icon name="bell" size={24} color="gray" />
+                                <Text style={styles.menuText}>Thông báo</Text>
                             </TouchableOpacity>
-                        )}
-                    </Animated.View>
+                            <TouchableOpacity style={styles.menuItem} onPress={handleUserPress}>
+                                <Icon name="user" size={24} color="gray" />
+                                <Text style={styles.menuText}>Tài khoản</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.menuItem} onPress={handleTicketPress}>
+                                <Icon name="ticket-alt" size={24} color="gray" />
+                                <Text style={styles.menuText}>Vé</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.menuItem}>
+                                <Icon name="cog" size={24} color="gray" />
+                                <Text style={styles.menuText}>Cài đặt</Text>
+                            </TouchableOpacity>
+                            {user && (
+                                <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
+                                    <Icon name="sign-out-alt" size={24} color="red" />
+                                    <Text style={[styles.menuText, { color: "red" }]}>Đăng xuất</Text>
+                                </TouchableOpacity>
+                            )}
+                        </Animated.View>
+                    </View>
                 </TouchableWithoutFeedback>
-            )}
+            </Modal>
         </>
-
-
     );
 };
 
@@ -165,16 +181,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 0
     },
     menuContainer: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        flex: 1,
-        height: " 100%",
-        backgroundColor: "rgba(255,255,255,.9)", // Lớp nền mờ
+        backgroundColor: "rgba(255,255,255,.8)",
         paddingTop: 50,
         paddingHorizontal: 20,
-        zIndex: 1000,
-        paddingLeft: "10%"
+        paddingLeft: "10%",
     },
     menuItem: {
         flexDirection: "row",
@@ -190,9 +200,9 @@ const styles = StyleSheet.create({
     numberTicket: {
         position: "absolute",
         right: 0,
-        fontweight: "bold",
+        fontWeight: "bold",
         color: COLORS.primary,
-        fontsize: 15,
+        fontSize: 15,
     }
 });
 

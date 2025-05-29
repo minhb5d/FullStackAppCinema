@@ -76,8 +76,8 @@ async def add_film(request: AddFilm, db: AsyncSession):
     return AddFilmResponse(message="Thêm phim thành công")
 
 async def update_phim(phim_id: int, phim_data: PhimUpdateSchema, db: AsyncSession):
-    query = await db.execute(select(Phim).where(Phim.id == phim_id))
-    phim = query.scalar_one_or_none()
+    result = await db.execute(select(Phim).where(Phim.id == phim_id))
+    phim = result.scalar_one_or_none()
 
     if not phim:
         raise HTTPException(status_code=404, detail="Không tìm thấy phim")
@@ -89,4 +89,15 @@ async def update_phim(phim_id: int, phim_data: PhimUpdateSchema, db: AsyncSessio
     await db.commit()
     await db.refresh(phim)
     return phim
+
+async def delete_film(phim_id: int, db: AsyncSession) -> DeleteFilmResponse:
+    result = await db.execute(select(Phim).where(Phim.id == phim_id))
+    phim = result.scalar_one_or_none()
+
+    if not phim:
+        raise HTTPException(status_code=404, detail="Không tìm thấy phim để xóa")
+
+    await db.delete(phim)
+    await db.commit()
+    return DeleteFilmResponse(message="Xóa phim thành công")
 
