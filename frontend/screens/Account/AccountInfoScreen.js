@@ -24,6 +24,8 @@ const AccountInfoScreen = ({ route, navigation }) => {
     const [address, setAddress] = useState(user.address || '');
     const [showPicker, setShowPicker] = useState(false);
 
+
+
     const handleDateChange = (event, selectedDate) => {
         if (selectedDate) {
             setDob(selectedDate);
@@ -69,14 +71,17 @@ const AccountInfoScreen = ({ route, navigation }) => {
             console.log("Sending updatedUser:", updatedUser);
 
             const response = await axios.put(
-                `http://192.168.1.211:8000/account/users/${user.id}`,
+                `http://192.168.164.5:8000/account/users/${user.id}`,
                 updatedUser
             );
 
             const userNew = response.data;
-            setUser(userNew);
+            console.log("Received updated user:", userNew);
+
             await AsyncStorage.setItem("user", JSON.stringify(userNew));
             Alert.alert("Thành công", "Thông tin đã được cập nhật!");
+            navigation.navigate("Home");
+
         } catch (error) {
             console.error("Update error:", error);
             Alert.alert("Lỗi", "Không thể cập nhật thông tin.");

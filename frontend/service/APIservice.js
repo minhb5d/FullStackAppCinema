@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // const API_BASE_URL = 'https://backend-dat-ve-online-1.onrender.com'; // Thay bằng IP máy backend nếu cần
-const API_BASE_URL = 'http://192.168.1.211:8000';
+const API_BASE_URL = 'http://192.168.164.5:8000';
 const api = axios.create({
     baseURL: API_BASE_URL,
     timeout: 5000, // Timeout nếu mất kết nối
