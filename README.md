@@ -546,12 +546,12 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 
 2. **Giao diện Phim Sắp Chiếu, Phim Đang Chiếu**
 
-   <img src="Office/f.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:10px;"/>
+   <img src="Office/f.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:20px;"/>
    <img src="Office/f2.jpg" alt="Phim đang chiếu" width="200"/>
 
 3. **Giao diện Chi Tiết Phim Sắp Chiếu, Phim Đang Chiếu**
 
-   <img src="Office/f3.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:10px;"/>
+   <img src="Office/f3.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:20px;"/>
    <img src="Office/f4.jpg" alt="Phim đang chiếu" width="200"/>
 
 4. **Giao Diện Lịch Chiếu , Suất Chiếu**
@@ -565,20 +565,20 @@ API Cho Đặt vé . Thanh Toán , Bình Luận ( có thể mở rộng thêm ph
 5.1. **TH Đã Đăng Nhập**
 
 <p float="left">
-  <img src="Office/f11.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:10px;"/>
-  <img src="Office/f13.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:10px;"/>
+  <img src="Office/f11.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:20px;"/>
+  <img src="Office/f13.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:20px;"/>
   <img src="Office/f14.jpg" alt="Phim sắp chiếu" width="200"/>
 </p>
 
 6.  **Thanh Toán**
 
-    <img src="Office/f12.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:10px;"/>
+    <img src="Office/f12.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:20px;"/>
     
 7.  **Thông Tin Vé**
 
 <p float="left">
-  <img src="Office/f20.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:10px;"/>
-  <img src="Office/f15.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:10px;"/>
+  <img src="Office/f20.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:20px;"/>
+  <img src="Office/f15.jpg" alt="Phim sắp chiếu" width="200" style="margin-right:20px;"/>
   <img src="Office/f16.jpg" alt="Phim sắp chiếu" width="200"/>
 </p>
 
